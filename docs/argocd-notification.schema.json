@@ -1,0 +1,188 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1,
+      "title": "Schema Version",
+      "type": "integer"
+    },
+    "source": {
+      "pattern": "^[a-z0-9][a-z0-9-]{0,62}$",
+      "title": "Source",
+      "type": "string"
+    },
+    "event": {
+      "enum": [
+        "created",
+        "deleting",
+        "sync_running",
+        "sync_succeeded",
+        "sync_failed",
+        "health_changed"
+      ],
+      "title": "Event",
+      "type": "string"
+    },
+    "project": {
+      "pattern": "^[a-z0-9][a-z0-9-]{0,62}$",
+      "title": "Project",
+      "type": "string"
+    },
+    "application": {
+      "pattern": "^[a-z0-9][a-z0-9-]{0,62}$",
+      "title": "Application",
+      "type": "string"
+    },
+    "application_uid": {
+      "format": "uuid",
+      "title": "Application Uid",
+      "type": "string"
+    },
+    "application_created_at": {
+      "format": "date-time",
+      "title": "Application Created At",
+      "type": "string"
+    },
+    "resource_version": {
+      "maxLength": 128,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9._:-]+$",
+      "title": "Resource Version",
+      "type": "string"
+    },
+    "namespace": {
+      "pattern": "^[a-z0-9][a-z0-9-]{0,62}$",
+      "title": "Namespace",
+      "type": "string"
+    },
+    "environment": {
+      "enum": [
+        "test",
+        "feature",
+        "preprod",
+        "prod"
+      ],
+      "title": "Environment",
+      "type": "string"
+    },
+    "source_project": {
+      "maxLength": 512,
+      "pattern": "^[A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.-]+)+$",
+      "title": "Source Project",
+      "type": "string"
+    },
+    "source_ref": {
+      "maxLength": 255,
+      "minLength": 1,
+      "pattern": "^[^\\x00-\\x1f\\x7f]+$",
+      "title": "Source Ref",
+      "type": "string"
+    },
+    "values_path": {
+      "maxLength": 512,
+      "pattern": "^kubernetes/(test|feature|preprod|prod)/[a-z0-9-]+/values\\.yaml$",
+      "title": "Values Path",
+      "type": "string"
+    },
+    "sync": {
+      "default": "Unknown",
+      "enum": [
+        "Unknown",
+        "Synced",
+        "OutOfSync"
+      ],
+      "title": "Sync",
+      "type": "string"
+    },
+    "health": {
+      "default": "Unknown",
+      "enum": [
+        "Unknown",
+        "Healthy",
+        "Progressing",
+        "Degraded",
+        "Suspended",
+        "Missing"
+      ],
+      "title": "Health",
+      "type": "string"
+    },
+    "revisions": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 8,
+      "title": "Revisions",
+      "type": "array"
+    },
+    "operation_started_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Operation Started At"
+    },
+    "operation_finished_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Operation Finished At"
+    },
+    "deletion_started_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Deletion Started At"
+    },
+    "health_changed_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Health Changed At"
+    }
+  },
+  "required": [
+    "schema_version",
+    "source",
+    "event",
+    "project",
+    "application",
+    "application_uid",
+    "application_created_at",
+    "resource_version",
+    "namespace",
+    "environment",
+    "source_project",
+    "source_ref",
+    "values_path"
+  ],
+  "title": "ArgoNotification",
+  "type": "object"
+}

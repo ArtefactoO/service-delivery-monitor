@@ -1,0 +1,14 @@
+.git
+**/node_modules
+**/dist
+**/__pycache__
+**/.pytest_cache
+**/.venv
+**/.env
+**/.env.*
+.impeccable
+.DS_Store
+.cache
+.docker
+rendered.yaml
+backend/pytest.xml

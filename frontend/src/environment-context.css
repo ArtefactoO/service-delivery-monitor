@@ -1,0 +1,52 @@
+.sidebar nav { margin-top:28px; }
+.catalog-controls { align-items:center; }
+.catalog-context { margin-left:auto; color:var(--sl-muted); font-size:12px; white-space:nowrap; }
+.service-context-row { display:flex; align-items:center; flex-wrap:wrap; gap:10px; margin-top:14px; }
+.service-context-row .MuiButton-root { color:var(--sdm-action); border-color:var(--sl-line-strong); font-size:12px; min-height:34px; }
+.service-context-row .env-switch { margin:0; }
+.service-page .delivery-summary { justify-content:flex-start; flex-wrap:wrap; gap:8px 16px; }
+.service-page .summary-main { flex:0 1 auto; }
+.service-page .summary-time { display:flex; margin-left:0; }
+.service-endpoints { display:flex; align-items:center; flex-wrap:wrap; gap:8px 16px; font-size:12px; margin:12px 0; }
+.service-endpoints > span { display:inline-flex; align-items:center; gap:7px; color:var(--sl-muted); }
+.service-endpoints .sheet-value-link { overflow-wrap:anywhere; }
+.service-endpoints .sheet-value-link,.service-endpoints .sheet-value-link:hover { color:var(--sdm-action); }
+.feature-context { display:flex; align-items:center; flex-wrap:wrap; gap:10px; margin:12px 0; min-width:0; }
+.feature-choice { width:min(420px,55%); }
+.feature-choice .MuiOutlinedInput-root { min-height:34px; }
+.feature-choice .MuiSelect-select { min-width:0; padding:7px 32px 7px 11px; font-size:12px; }
+.feature-choice .MuiInputLabel-root { font-size:12px; }
+.feature-branch { display:flex; align-items:center; gap:8px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+.feature-branch > svg { flex:none; }
+.feature-choice .feature-branch > svg { color:var(--sdm-action); }
+.feature-branch > span { min-width:0; overflow:hidden; text-overflow:ellipsis; }
+.feature-instance-hint { flex:none; color:var(--sl-muted); font:10px/1.5 'IBM Plex Mono',monospace; }
+.feature-age.MuiChip-root,.feature-branch-chip.MuiChip-root { max-width:100%; color:var(--sl-text); border-color:var(--sl-line-strong); }
+.feature-branch-chip.MuiChip-root { max-width:420px; height:28px; }
+.feature-branch-chip.MuiChip-root { color:var(--sdm-action); background:var(--sdm-selection-bg); }
+.feature-branch-chip .MuiChip-label { min-width:0; font-size:12px; }
+.feature-age .MuiChip-icon,.feature-branch-chip .MuiChip-icon { color:var(--sl-muted); margin-left:9px; }
+.feature-branch-chip .MuiChip-icon { color:inherit; }
+.feature-age .MuiChip-label { font-variant-numeric:tabular-nums; font-size:12px; }
+.feature-stop.MuiChip-root { max-width:100%; color:var(--sl-muted); border-color:var(--sl-line-strong); }
+.feature-stop.overdue.MuiChip-root { color:var(--sl-warn); }
+.feature-stop .MuiChip-label { font-variant-numeric:tabular-nums; font-size:11px; }
+.feature-stop .MuiChip-icon { color:inherit; margin-left:9px; }
+.feature-option.MuiMenuItem-root { display:flex; gap:16px; justify-content:space-between; padding:7px 12px; min-height:48px; min-width:320px; max-width:600px; }
+.feature-option.single-line.MuiMenuItem-root { min-height:34px; }
+.feature-option-text { min-width:0; overflow:hidden; }
+.feature-option strong { display:block; font-size:12px; line-height:1.5; font-weight:500; overflow:hidden; text-overflow:ellipsis; }
+.feature-option small { display:block; font:10px/1.5 'IBM Plex Mono',monospace; color:var(--sl-muted); overflow:hidden; text-overflow:ellipsis; }
+.feature-option-age { flex:none; color:var(--sl-muted); font-size:11px; font-variant-numeric:tabular-nums; }
+.feature-option:is(.Mui-selected,.Mui-focusVisible,:hover) .feature-option-age,
+.feature-option:is(.Mui-selected,.Mui-focusVisible,:hover) small { color:var(--sl-text); }
+.catalog-features { display:flex; flex-direction:column; gap:12px; margin:14px 0; max-height:230px; overflow:auto; }
+.catalog-features > div { display:flex; flex-wrap:wrap; align-items:center; gap:6px 10px; border-top:1px solid var(--sl-line); padding-top:10px; }
+.catalog-feature-name { display:flex; align-items:center; gap:6px; width:100%; overflow-wrap:anywhere; font-size:13px; text-align:left; }
+.catalog-feature-name > svg { flex:none; }
+.catalog-feature-single { flex-wrap:wrap; gap:6px; }
+.overview-toolbar .MuiTab-root { text-transform:none; min-height:44px; font-size:13px; }
+.overview-toolbar .MuiTab-root.Mui-selected { color:var(--sdm-action); }
+.overview-toolbar .MuiTabs-root { min-height:44px; }
+.catalog-features .MuiChip-root { height:24px; }
+@media (prefers-reduced-motion:reduce) { .feature-context .MuiChip-root { transition:none; } }

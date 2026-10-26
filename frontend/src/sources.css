@@ -1,0 +1,23 @@
+.source-diagnostics-list { display:flex; flex-direction:column; gap:14px; }
+.source-diagnostics { border:1px solid var(--sl-line); border-radius:6px; padding:16px 18px; background:var(--sl-panel); min-width:0; }
+.source-diagnostics-heading { display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px; }
+.source-diagnostics-heading > svg { color:var(--sl-muted); flex:none; }
+.source-diagnostics-heading h2 { color:var(--sdm-identity); margin:0; font-size:15px; font-weight:500; overflow-wrap:anywhere; }
+.source-diagnostics-kind { color:var(--sl-muted); font-size:12px; margin-right:auto; }
+.source-diagnostics-summary { display:flex; flex-wrap:wrap; gap:6px 24px; color:var(--sl-muted); font-size:12px; margin:10px 0 0 34px; }
+.source-diagnostics time { font-variant-numeric:tabular-nums; }
+.source-diagnostics-error,.source-diagnostics-gate { font-size:12px; line-height:1.6; margin:10px 0 0 34px; max-width:90ch; }
+.source-diagnostics-error { color:var(--sl-danger); }
+.source-diagnostics-gate { color:var(--sl-muted); }
+.source-diagnostics-extra { margin:12px 0 0 34px; }
+.source-diagnostics-extra > summary { display:flex; align-items:center; gap:6px; width:fit-content; color:var(--sl-muted); cursor:pointer; list-style:none; font-size:12px; padding:3px 0; }
+.source-diagnostics-extra > summary::-webkit-details-marker { display:none; }
+.source-diagnostics-extra > summary:focus-visible { outline:2px solid var(--sl-focus); outline-offset:3px; }
+.source-diagnostics-extra > summary:hover { color:var(--sl-text); }
+.source-diagnostics-extra > summary svg { flex:none; }
+.source-diagnostics-extra[open] > summary svg { transform:rotate(180deg); }
+.source-diagnostics-extra dl { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px 30px; margin:14px 0 0; padding-top:14px; border-top:1px solid var(--sl-line); }
+.source-diagnostics-extra dl > div { display:flex; flex-wrap:wrap; gap:3px 12px; font-size:12px; min-width:0; }
+.source-diagnostics-extra dt { flex:0 1 190px; color:var(--sl-muted); }
+.source-diagnostics-extra dd { margin:0; font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
+.source-diagnostics-budget { margin:12px 0 0; max-width:90ch; color:var(--sl-muted); font-size:12px; line-height:1.6; }
