@@ -1,0 +1,16 @@
+{
+  "reader_token_env": "SDM_READER_TOKEN",
+  "bootstrap_registry": "/app/config/registry.example.json",
+  "producers": {
+    "publisher": {
+      "token_env": "SDM_PUBLISHER_TOKEN", "kinds": ["publication", "deployment", "argocd"],
+      "all_registered_projects": true, "attempt_project_id": 900,
+      "environments": ["test", "preprod", "prod", "feature"]
+    },
+    "build": {
+      "token_env": "SDM_BUILD_TOKEN", "kinds": ["build"],
+      "source_project_ids": [100], "attempt_project_id": 100
+    }
+  },
+  "integrations": {}
+}

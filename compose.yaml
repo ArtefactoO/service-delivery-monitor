@@ -1,0 +1,72 @@
+name: service-delivery-monitor
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: sdm
+      POSTGRES_USER: sdm
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes: ["db-data:/var/lib/postgresql/data"]
+    networks: [database]
+    healthcheck:
+      test: [CMD-SHELL, "pg_isready -U sdm -d sdm"]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+  app:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile
+      target: runtime
+    command: [python, -m, sdm, local]
+    environment:
+      DATABASE_URL: postgresql+psycopg://sdm@db:5432/sdm
+      SDM_CONFIG: /app/config/local.json
+      SDM_READER_TOKEN_FILE: /run/credentials/reader
+      SDM_PUBLISHER_TOKEN_FILE: /run/credentials/publisher
+      SDM_BUILD_TOKEN_FILE: /run/credentials/build
+    tmpfs:
+      - /run/credentials:uid=10001,gid=10001,mode=0700
+      - /tmp
+    read_only: true
+    ports: ["127.0.0.1:4318:8080"]
+    networks: [database, outbound]
+    depends_on:
+      db: {condition: service_healthy}
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/readyz', timeout=2)"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+  db-test:
+    profiles: [test]
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: sdm_test
+      POSTGRES_USER: sdm
+      POSTGRES_HOST_AUTH_METHOD: trust
+    tmpfs: ["/var/lib/postgresql/data"]
+    networks: [database]
+    healthcheck:
+      test: [CMD-SHELL, "pg_isready -U sdm -d sdm_test"]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+  test:
+    profiles: [test]
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile
+      target: test
+    environment:
+      SDM_TEST_DATABASE_URL: postgresql+psycopg://sdm@db-test:5432/sdm_test
+    depends_on:
+      db-test: {condition: service_healthy}
+    networks: [database]
+    read_only: true
+    tmpfs: [/tmp]
+networks:
+  database: {internal: true}
+  outbound: {}
+volumes:
+  db-data: {}

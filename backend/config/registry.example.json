@@ -1,0 +1,4 @@
+{
+  "revision": "local-fixture",
+  "services": [{"key": "example-service", "project_id": 100, "project": "example/example-service", "test_ref": "dev"}]
+}

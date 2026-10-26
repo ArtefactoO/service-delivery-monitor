@@ -1,0 +1,33 @@
+{
+  "name": "service-delivery-monitor",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test:graph": "node --experimental-strip-types --test tests/*.test.mjs"
+  },
+  "dependencies": {
+    "@emotion/react": "11.14.0",
+    "@emotion/styled": "11.14.1",
+    "@mui/material": "6.5.0",
+    "@project/ui": "file:./packages/project-ui",
+    "@xyflow/react": "^12.12.0",
+    "elkjs": "~0.11.1",
+    "lucide-react": "0.500.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "simple-icons": "16.35.0"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.31",
+    "@types/react-dom": "18.3.7",
+    "@vitejs/plugin-react": "4.7.0",
+    "typescript": "5.9.3",
+    "vite": "6.4.4"
+  },
+  "packageManager": "pnpm@11.25.0",
+  "license": "MIT"
+}

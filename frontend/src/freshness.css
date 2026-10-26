@@ -1,0 +1,16 @@
+.freshness-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  max-width: 100%;
+  padding: 2px 5px;
+  border: 1px solid var(--sl-line-strong);
+  border-radius: 4px;
+  color: var(--sl-warn);
+  font: 500 11px/1.4 'IBM Plex Sans', sans-serif;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: help;
+}
+.freshness-badge > svg { flex: none; }
+.freshness-badge:focus-visible { outline: 2px solid var(--sl-focus); outline-offset: 2px; }

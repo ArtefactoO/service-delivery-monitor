@@ -1,0 +1,25 @@
+**/node_modules
+frontend/dist/
+.DS_Store
+.impeccable/
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.pytest_cache/
+.cache/
+.docker/
+rendered.yaml
+backend/pytest.xml
+
+# Local credentials, caches and generated previews
+.env.*
+!.env.example
+node_modules/
+dist/
+.artifacts/
+anti-slop/
+graphify-out/
+pki/
+*.key
+*.pem

@@ -1,0 +1,382 @@
+{
+  "$defs": {
+    "Attempt": {
+      "additionalProperties": false,
+      "properties": {
+        "project_id": {
+          "exclusiveMinimum": 0,
+          "title": "Project Id",
+          "type": "integer"
+        },
+        "pipeline_id": {
+          "exclusiveMinimum": 0,
+          "title": "Pipeline Id",
+          "type": "integer"
+        },
+        "job_id": {
+          "exclusiveMinimum": 0,
+          "title": "Job Id",
+          "type": "integer"
+        },
+        "sequence": {
+          "maximum": 1000000,
+          "minimum": 0,
+          "title": "Sequence",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "project_id",
+        "pipeline_id",
+        "job_id",
+        "sequence"
+      ],
+      "title": "Attempt",
+      "type": "object"
+    },
+    "Image": {
+      "additionalProperties": false,
+      "properties": {
+        "repository": {
+          "maxLength": 512,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]+$",
+          "title": "Repository",
+          "type": "string"
+        },
+        "digest": {
+          "pattern": "^sha256:[a-f0-9]{64}$",
+          "title": "Digest",
+          "type": "string"
+        }
+      },
+      "required": [
+        "repository",
+        "digest"
+      ],
+      "title": "Image",
+      "type": "object"
+    },
+    "Publication": {
+      "additionalProperties": false,
+      "properties": {
+        "revision": {
+          "pattern": "^[a-f0-9]{40}$",
+          "title": "Revision",
+          "type": "string"
+        },
+        "values_path": {
+          "maxLength": 512,
+          "pattern": "^kubernetes/(test|preprod|prod|feature)/[a-z0-9-]+/values\\.yaml$",
+          "title": "Values Path",
+          "type": "string"
+        },
+        "values_revision": {
+          "pattern": "^[a-f0-9]{40}$",
+          "title": "Values Revision",
+          "type": "string"
+        },
+        "build_revision": {
+          "pattern": "^[a-f0-9]{40}$",
+          "title": "Build Revision",
+          "type": "string"
+        },
+        "images": {
+          "items": {
+            "$ref": "#/$defs/Image"
+          },
+          "maxItems": 32,
+          "minItems": 1,
+          "title": "Images",
+          "type": "array"
+        },
+        "config_revision": {
+          "anyOf": [
+            {
+              "pattern": "^[a-f0-9]{40}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Config Revision"
+        },
+        "chart_ref": {
+          "maxLength": 128,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9._/-]+$",
+          "title": "Chart Ref",
+          "type": "string"
+        }
+      },
+      "required": [
+        "revision",
+        "values_path",
+        "values_revision",
+        "build_revision",
+        "images",
+        "chart_ref"
+      ],
+      "title": "Publication",
+      "type": "object"
+    },
+    "Runtime": {
+      "additionalProperties": false,
+      "properties": {
+        "application": {
+          "pattern": "^[a-z0-9][a-z0-9-]{0,62}$",
+          "title": "Application",
+          "type": "string"
+        },
+        "application_uid": {
+          "format": "uuid",
+          "title": "Application Uid",
+          "type": "string"
+        },
+        "application_created_at": {
+          "format": "date-time",
+          "title": "Application Created At",
+          "type": "string"
+        },
+        "namespace": {
+          "pattern": "^[a-z0-9][a-z0-9-]{0,62}$",
+          "title": "Namespace",
+          "type": "string"
+        },
+        "verified_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Verified At"
+        },
+        "auto_stop_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Auto Stop At"
+        }
+      },
+      "required": [
+        "application",
+        "application_uid",
+        "application_created_at",
+        "namespace"
+      ],
+      "title": "Runtime",
+      "type": "object"
+    },
+    "Source": {
+      "additionalProperties": false,
+      "properties": {
+        "project_id": {
+          "exclusiveMinimum": 0,
+          "title": "Project Id",
+          "type": "integer"
+        },
+        "ref": {
+          "maxLength": 255,
+          "minLength": 1,
+          "pattern": "^[^\\x00-\\x1f\\x7f]+$",
+          "title": "Ref",
+          "type": "string"
+        },
+        "revision": {
+          "pattern": "^[a-f0-9]{40}$",
+          "title": "Revision",
+          "type": "string"
+        }
+      },
+      "required": [
+        "project_id",
+        "ref",
+        "revision"
+      ],
+      "title": "Source",
+      "type": "object"
+    },
+    "Target": {
+      "additionalProperties": false,
+      "properties": {
+        "environment": {
+          "enum": [
+            "test",
+            "preprod",
+            "prod",
+            "feature"
+          ],
+          "title": "Environment",
+          "type": "string"
+        },
+        "instance": {
+          "pattern": "^[a-z0-9][a-z0-9-]{0,62}$",
+          "title": "Instance",
+          "type": "string"
+        }
+      },
+      "required": [
+        "environment",
+        "instance"
+      ],
+      "title": "Target",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1,
+      "title": "Schema Version",
+      "type": "integer"
+    },
+    "event_id": {
+      "format": "uuid",
+      "title": "Event Id",
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "build",
+        "publication",
+        "deployment",
+        "argocd"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "started",
+        "succeeded",
+        "failed",
+        "canceled"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "action": {
+      "default": "upsert",
+      "enum": [
+        "upsert",
+        "delete"
+      ],
+      "title": "Action",
+      "type": "string"
+    },
+    "service": {
+      "pattern": "^[a-z0-9][a-z0-9-]{0,62}$",
+      "title": "Service",
+      "type": "string"
+    },
+    "source": {
+      "$ref": "#/$defs/Source"
+    },
+    "attempt": {
+      "$ref": "#/$defs/Attempt"
+    },
+    "occurred_at": {
+      "format": "date-time",
+      "title": "Occurred At",
+      "type": "string"
+    },
+    "target": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Target"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "publication": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Publication"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "runtime": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Runtime"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "images": {
+      "items": {
+        "$ref": "#/$defs/Image"
+      },
+      "maxItems": 32,
+      "title": "Images",
+      "type": "array"
+    },
+    "build_revision": {
+      "anyOf": [
+        {
+          "pattern": "^[a-f0-9]{40}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Build Revision"
+    },
+    "absence_confirmed": {
+      "default": false,
+      "title": "Absence Confirmed",
+      "type": "boolean"
+    },
+    "failure_code": {
+      "anyOf": [
+        {
+          "pattern": "^[a-z][a-z0-9_.-]{0,79}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Failure Code"
+    }
+  },
+  "required": [
+    "schema_version",
+    "event_id",
+    "kind",
+    "status",
+    "service",
+    "source",
+    "attempt",
+    "occurred_at"
+  ],
+  "title": "DeliveryEvent",
+  "type": "object"
+}

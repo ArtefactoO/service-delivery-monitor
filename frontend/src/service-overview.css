@@ -1,0 +1,126 @@
+/* Desktop service sheet: one surface, compact rows, links live in values. */
+.service-page .service-heading { margin-bottom:12px; }
+.service-page .title-row h1 { color:var(--sdm-identity); }
+.service-page .back-link { margin-bottom:8px; }
+.service-page .service-meta { margin-top:6px; }
+.service-page .delivery-summary { padding:5px 0; border:0; background:none; }
+.service-page .summary-main { align-items:center; gap:8px; }
+.service-page .summary-main > div { display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 12px; }
+.service-page .summary-main span { margin-top:0; }
+.service-page .service-toolbar { margin:14px 0 12px; }
+.overview-toolbar { align-items:flex-end; }
+.overview-toolbar-actions { display:flex; align-items:center; gap:10px; padding-bottom:8px; }
+.overview-toolbar-actions .MuiButton-root { color:var(--sl-text); border-color:var(--sl-line-strong); font-size:12px; }
+.developer-overview { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); border:1px solid var(--sl-line); border-radius:6px; background:var(--sl-panel); overflow:hidden; }
+.developer-overview.registration-only { grid-template-columns:1fr; }
+.developer-group { min-width:0; padding:22px 24px 16px; }
+.developer-group:nth-child(odd):not(:last-child) { border-right:1px solid var(--sl-line); }
+.developer-group:nth-child(n+3) { border-top:1px solid var(--sl-line); }
+.developer-group-heading { display:flex; align-items:center; gap:10px; margin-bottom:18px; }
+.developer-group-heading > svg { color:var(--sl-muted); flex:none; }
+.developer-group-heading h2 { margin:0; font-size:16px; font-weight:500; }
+.developer-group-heading .MuiIconButton-root { margin-left:auto; color:var(--sl-muted); }
+.developer-summary { display:flex; flex-direction:column; gap:12px; }
+.developer-row { display:flex; align-items:baseline; gap:14px; font-size:14px; line-height:1.6; min-width:0; }
+.developer-label { flex:0 0 106px; font-size:12px; color:var(--sl-muted); display:inline-flex; align-items:center; gap:6px; }
+.developer-value { min-width:0; display:flex; align-items:baseline; flex-wrap:wrap; gap:3px 10px; }
+.developer-row code,.developer-code { font:12px/1.6 'IBM Plex Mono',monospace; }
+.developer-row code { color:var(--sl-muted); }
+.developer-inline { display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 16px; min-width:0; }
+.developer-state { font-size:12px; white-space:nowrap; }
+.developer-workload { display:inline-flex; align-items:baseline; gap:7px; white-space:nowrap; }
+.developer-workload > span { font-size:12px; }
+.developer-row-path { flex-direction:column; gap:6px; }.developer-row-path .developer-label { flex-basis:auto; }
+.developer-row-path .sheet-value-link { font:12px/1.7 'IBM Plex Mono',monospace; }
+.developer-note { margin:0; font-size:12px; color:var(--sl-muted); line-height:1.7; }
+.sheet-value-link { display:inline-flex; align-items:baseline; gap:4px; max-width:100%; min-width:0; color:var(--sdm-action); text-decoration:none; }
+.sheet-value-link > span { min-width:0; overflow-wrap:anywhere; text-decoration:none; text-underline-offset:3px; text-decoration-thickness:1px; }
+.sheet-value-link > svg { flex:none; align-self:center; color:var(--sl-muted); }
+.sheet-value-link:hover { color:var(--sdm-action); text-decoration:none; }
+.sheet-value-link:hover > span { text-decoration:underline; text-underline-offset:3px; text-decoration-thickness:1px; }
+.developer-extra { margin-top:18px; }
+.developer-extra > summary { width:fit-content; list-style:none; display:flex; align-items:center; gap:6px; cursor:pointer; color:var(--sl-muted); font-size:12px; padding:4px 0; }
+.developer-extra > summary::-webkit-details-marker { display:none; }
+.developer-extra > summary:hover { color:var(--sl-text); }
+.developer-extra > summary svg { transition:transform 150ms ease-out; }.developer-extra[open] > summary svg { transform:rotate(180deg); }
+.developer-extra-content { border-top:1px solid var(--sl-line); margin-top:12px; padding-top:4px; }
+.developer-extra-section h3 { display:flex; align-items:center; gap:8px; margin:16px 0 12px; font-size:13px; font-weight:500; }.developer-extra-section h3 .MuiIconButton-root { margin-left:auto; }
+.developer-extra-section dl { display:flex; flex-direction:column; gap:10px; margin:0 0 24px; }
+.developer-extra-section dl > div { display:grid; grid-template-columns:128px minmax(0,1fr); gap:12px; }
+.developer-extra-section dt { font-size:12px; color:var(--sl-muted); }
+.developer-extra-section dd { font:12px/1.6 'IBM Plex Mono',monospace; margin:0; overflow-wrap:anywhere; }
+@media(prefers-reduced-motion:reduce) { .developer-extra > summary svg { transition:none; } }
+
+/* Common publication once, followed by workload-centered component cards. */
+.developer-overview.component-overview { display:flex; flex-direction:column; gap:0; border:0; background:none; overflow:visible; }
+.service-common { padding:16px 20px 12px; border:1px solid var(--sl-line); border-radius:6px; background:var(--sl-panel); }
+.service-section-heading,.service-components-heading { display:flex; align-items:baseline; flex-wrap:wrap; gap:8px 16px; }
+.service-section-heading h2,.service-components-heading h2,.service-unassigned h2 { margin:0; font-size:15px; font-weight:500; }
+.service-section-heading > span,.service-components-heading > span { font-size:12px; color:var(--sl-muted); }
+.service-shared-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px 24px; margin-top:12px; }
+.service-common-resource { min-width:0; }
+.service-common-label { display:flex; align-items:center; gap:8px; margin-bottom:4px; color:var(--sl-muted); font-size:12px; }
+.service-common-label .MuiIconButton-root { flex:none; color:var(--sl-muted); }
+.service-common-resource > .sheet-value-link,.service-common-resource > span { font-size:14px; }
+.service-common-meta { display:flex; align-items:baseline; flex-wrap:wrap; gap:4px 16px; margin-top:4px; font-size:12px; color:var(--sl-muted); }
+.service-common-meta code { font:12px/1.6 'IBM Plex Mono',monospace; overflow-wrap:anywhere; }
+.service-common .developer-extra { margin-top:12px; }
+.service-common-dependencies { margin-top:16px; padding-top:12px; border-top:1px solid var(--sl-line); display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px 24px; }
+.service-common-dependencies h3 { grid-column:1/-1; margin:0; font-size:13px; font-weight:500; }
+.service-components-heading { margin:20px 0 10px; }
+.component-navigation { display:flex; flex-wrap:wrap; gap:6px; margin:0 0 12px; }
+.component-navigation a { display:inline-flex; align-items:baseline; flex-wrap:wrap; gap:4px 8px; padding:5px 9px; border:1px solid var(--sl-line); border-radius:5px; text-decoration:none; min-width:0; max-width:100%; font-size:11px; }
+.component-navigation a:hover { background:var(--sdm-selection-bg); border-color:var(--sl-line-strong); }
+.component-navigation strong { color:var(--sdm-action); font-size:12px; font-weight:500; overflow-wrap:anywhere; }
+.component-navigation a > span:last-child { font-variant-numeric:tabular-nums; }
+.service-components { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); align-items:start; gap:16px; }
+.service-component { min-width:0; padding:16px 20px 12px; border:1px solid var(--sl-line); border-radius:6px; background:var(--sl-panel); scroll-margin-top:20px; }
+.service-component:focus { outline:2px solid var(--sl-focus); outline-offset:3px; }
+.component-heading { display:flex; align-items:center; gap:8px; margin-bottom:8px; min-width:0; }
+.component-heading > svg { color:var(--sl-muted); flex:none; }
+.component-heading h3 { color:var(--sdm-identity); margin:0; font-size:16px; font-weight:500; overflow-wrap:anywhere; }
+.component-title-actions { display:flex; align-items:center; gap:4px; min-width:0; }
+.component-title-actions .MuiIconButton-root { flex:none; color:var(--sl-muted); }
+.component-state { margin-left:auto; font-size:12px; text-align:right; }
+.component-workload { display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; font-size:14px; }
+.component-runtime { display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 20px; margin-top:8px; font-size:12px; color:var(--sl-muted); }
+.component-runtime strong { font-weight:500; font-variant-numeric:tabular-nums; }
+.component-dependencies { display:flex; flex-direction:column; gap:12px; margin-top:16px; padding-top:12px; border-top:1px solid var(--sl-line); }
+.component-resource { display:grid; grid-template-columns:116px minmax(0,1fr); align-items:start; gap:8px; min-width:0; font-size:13px; }
+.component-resource-kind { display:inline-flex; align-items:center; gap:6px; color:var(--sl-muted); font-size:12px; line-height:1.7; }
+.component-resource-kind svg { flex:none; }
+.component-resource-value { min-width:0; }
+.component-resource-value > span { overflow-wrap:anywhere; }
+.component-resource-value small { display:block; margin-top:3px; color:var(--sl-muted); font:11px/1.6 'IBM Plex Mono',monospace; overflow-wrap:anywhere; }
+.resource-name-actions { display:flex; align-items:center; gap:4px; width:fit-content; max-width:100%; min-width:0; }
+.resource-name-actions .MuiIconButton-root { flex:none; padding:5px; color:var(--sl-muted); }
+.component-shared-note { margin:4px 0 0; font-size:12px; line-height:1.6; color:var(--sl-muted); overflow-wrap:anywhere; }
+.component-shared-references { display:flex; flex-direction:column; gap:4px; min-width:0; font-size:13px; }
+.component-shared-reference { display:flex; align-items:center; gap:4px; min-width:0; }
+.component-shared-reference .MuiIconButton-root { color:var(--sl-muted); flex:none; }
+.service-component .developer-extra { margin-top:12px; }
+.service-config-source { margin-top:14px; padding-top:12px; border-top:1px solid var(--sl-line); }
+.service-config-source .component-resource { grid-template-columns:150px minmax(0,1fr); }
+.component-resource-problem { display:block; font-size:12px; margin-top:4px; }
+.component-problems { display:flex; flex-direction:column; gap:10px; }
+.service-component .developer-extra-section dl > div { grid-template-columns:112px minmax(0,1fr); }
+.service-unassigned { margin-top:20px; padding:16px 20px 12px; border:1px solid var(--sl-line); border-radius:6px; background:var(--sl-panel); }
+.service-unassigned > .developer-note { margin-top:6px; max-width:78ch; }
+.service-unassigned-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px 24px; margin-top:16px; }
+.service-overview-empty { margin-top:16px; }
+.component-overview summary:focus-visible,.component-overview a:focus-visible { outline:2px solid var(--sl-accent); outline-offset:3px; border-radius:3px; }
+
+.map-dialog.MuiDialog-paper { overflow:hidden; background:var(--sl-bg); color:var(--sl-text); }
+.map-dialog-heading { display:flex; align-items:center; justify-content:space-between; gap:20px; padding:16px 24px; border-bottom:1px solid var(--sl-line); flex-shrink:0; }
+.map-dialog-heading > div:first-child { display:flex; align-items:center; gap:12px; min-width:0; }
+.map-dialog-heading > div:first-child > svg { flex:none; color:var(--sl-muted); }
+.map-dialog-heading h2 { font-size:17px; line-height:1.4; font-weight:500; margin:0; overflow-wrap:anywhere; }
+.map-dialog-heading span { font-size:11px; color:var(--sl-muted); }
+.map-dialog-heading .map-dialog-actions { display:flex; align-items:center; gap:14px; flex:none; }
+.map-dialog-actions .MuiButton-root { font-size:12px; color:var(--sl-text); }
+.map-dialog-content { padding:20px 24px; flex:1; min-height:0; display:flex; }
+.map-dialog .logical-map { position:relative; width:100%; min-height:0; display:flex; flex-direction:column; }
+.map-dialog .logical-canvas { height:auto; min-height:180px; flex:1; }
+.map-dialog .logical-map-toolbar,.map-dialog .logical-map-key,.map-dialog .logical-picker { flex-shrink:0; }
+.map-dialog .logical-map-key { height:24px; margin:12px 0 0; flex-wrap:nowrap; }
+.map-dialog .logical-details { position:absolute; top:0; left:0; bottom:36px; width:var(--details-width,360px); max-width:100%; }

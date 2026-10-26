@@ -1,0 +1,30 @@
+[project]
+name = "service-delivery-monitor"
+version = "0.1.0"
+license = {text = "MIT"}
+requires-python = ">=3.12"
+dependencies = [
+  "fastapi>=0.115,<1",
+  "uvicorn>=0.34,<1",
+  "sqlalchemy>=2.0,<2.1",
+  "psycopg[binary]>=3.2,<4",
+  "httpx>=0.28,<1",
+  "pydantic>=2.10,<3",
+  "PyYAML>=6.0,<7",
+  "Authlib>=1.9,<2",
+  "joserfc>=1.7,<2",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8.3,<10"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q -p no:cacheprovider"
+
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["sdm*"]
